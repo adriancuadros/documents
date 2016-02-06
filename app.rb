@@ -4,7 +4,7 @@ require 'sequel'
 
 DB = Sequel.sqlite('documents.db')
 
-DB.create_table :documents do
+DB.create_table? :documents do
   primary_key :id
   String :title
   String :tags
@@ -16,14 +16,7 @@ get '/' do
 end
 
 get '/documents' do
-  @documents = []
-  4.times do
-    @documents << Document.new(
-      'Titulo',
-      'Tag1, Tag2',
-      'Descripción'
-    )
-  end
+  @documents = Document.all
   erb :documents
 end
 

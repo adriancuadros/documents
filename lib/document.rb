@@ -8,6 +8,16 @@ class Document
     @description = description
   end
 
+  def self.all
+    DB[:documents].all.map do |row|
+      new(
+        row[:title],
+        row[:tags],
+        row[:description]
+      )
+    end
+  end
+
   #
   def save
     DB[:documents].insert(
