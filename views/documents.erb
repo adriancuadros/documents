@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+    Documentos
+  </title>
+</head>
+<body>
+  <h1>Documentos</h1>
+
+  <div>
+    <label>Buscar: </label>
+    <input type='text' name='search' />
+  </div>
+
+  <% @documents.each do |document| %>
+    <p>
+      <strong>
+        <%= document.title %>
+      </strong>
+      <small>
+        <%= document.tags %>
+      </small> <br / >
+      <%= document.description %>
+    </p>
+  <% end %>
+
+</body>
+</html>
