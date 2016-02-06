@@ -17,11 +17,7 @@ get '/document/:id' do
 end
 
 post '/create_document' do 
-  @document = Document.new(
-    params[:title],
-    params[:tags],
-    params[:description]
-  )
+  @document = Document.new(params)
   @document.save
   erb :document
 end
