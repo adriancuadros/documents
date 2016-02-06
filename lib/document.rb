@@ -10,7 +10,7 @@ class Document
 
   #
   def save
-    DB.insert(
+    DB[:documents].insert(
       title: @title,
       tags: @tags,
       description: @description
