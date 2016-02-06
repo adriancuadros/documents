@@ -2,37 +2,23 @@ class Document
 
   attr_accessor :id, :title, :tags, :description
 
-  def initialize(title, tags, description)
-    @title = title
-    @tags = tags
-    @description = description
+  def initialize(params={})
+    @title = params[:title]
+    @tags = params[:tags]
+    @description = params[:description]
+    @id = params[:id]
   end
 
   def self.all
     DB[:documents].all.map do |row|
-      # FIXME: Deuda de codigo
-      document = new(
-        row[:title],
-        row[:tags],
-        row[:description]
-      )
-      document.id = row[:id]
-      document
+      new(row)
     end
   end
 
   def self.find(id)
-    row = DB[:documents].where(id: id).first
-    document = new(
-      row[:title],
-      row[:tags],
-      row[:description]
-    )
-    document.id = row[:id]
-    document
+    new(DB[:documents].where(id: id).first)
   end
 
-  #
   def save
     DB[:documents].insert(
       title: @title,
