@@ -1,15 +1,6 @@
 require 'sinatra'
 require './lib/document'
-require 'sequel'
-
-DB = Sequel.sqlite('documents.db')
-
-DB.create_table? :documents do
-  primary_key :id
-  String :title
-  String :tags
-  String :description
-end
+require './config.rb'
 
 get '/' do
   erb :new_document

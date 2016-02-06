@@ -1,6 +1,6 @@
 class Document
 
-  attr_accessor :title, :tags, :description
+  attr_accessor :id, :title, :tags, :description
 
   def initialize(title, tags, description)
     @title = title
@@ -10,11 +10,14 @@ class Document
 
   def self.all
     DB[:documents].all.map do |row|
-      new(
+      # FIXME: Deuda de codigo
+      document = new(
         row[:title],
         row[:tags],
         row[:description]
       )
+      document.id = row[:id]
+      document
     end
   end
 
