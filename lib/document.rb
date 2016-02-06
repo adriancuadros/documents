@@ -8,8 +8,13 @@ class Document
     @description = description
   end
 
+  #
   def save
-    
+    DB.insert(
+      title: @title,
+      tags: @tags,
+      description: @description
+    )
   end
 
 end
