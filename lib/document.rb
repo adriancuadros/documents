@@ -21,6 +21,17 @@ class Document
     end
   end
 
+  def self.find(id)
+    row = DB[:documents].where(id: id).first
+    document = new(
+      row[:title],
+      row[:tags],
+      row[:description]
+    )
+    document.id = row[:id]
+    document
+  end
+
   #
   def save
     DB[:documents].insert(

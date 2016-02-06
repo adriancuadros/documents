@@ -11,6 +11,11 @@ get '/documents' do
   erb :documents
 end
 
+get '/document/:id' do
+  @document = Document.find(params[:id])
+  erb :document
+end
+
 post '/create_document' do 
   @document = Document.new(
     params[:title],
